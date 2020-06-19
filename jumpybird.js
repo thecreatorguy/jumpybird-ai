@@ -40,7 +40,7 @@ const RENDER_ON_SCORE_REACHED = [10, 100, 1000, 10000, 100000, 200000, 300000, 4
 
 /**
  * Calculate the dot product of a 2d vector and a 1d vector
- * 
+ *
  * Parameters:
  *  v2d: 2d vector, first ordered argument of dot product
  *  v1d: 1d vector, second ordered argument of dot product
@@ -61,7 +61,7 @@ function vecDot(v2d, v1d) {
 
 /**
  * Calculate the vector addition of 2 1d vectors
- * 
+ *
  * Parameters:
  *  v2d: 1d vector, first argument of vector addition
  *  v1d: 1d vector, second argument of vector addition
@@ -78,7 +78,7 @@ function vecAdd(v1, v2) {
 
 /**
  * The sigmoid activation function
- * 
+ *
  * Parameters:
  *  val: real value to generate the sigmoid value of
  *
@@ -93,8 +93,8 @@ function sigmoid(val) {
  * ordered list representing the index of each value in the original array.
  * Ex: [[0, 1],  would produce the list: [[0, 0], [0, 1], [1, 0], [1, 1], [2, 0], [2, 1], [2, 2]]
  *      [2, 3],
- *      [4, 5, 6]] 
- * 
+ *      [4, 5, 6]]
+ *
  * Parameters:
  *  arr: an array of any dimension to get indices of
  *
@@ -134,7 +134,7 @@ function randInt(min, max = null) {
 
 /**
  * Gets a random element of the given array
- * 
+ *
  * Parameters:
  *  arr: array to randomly choose from
  *
@@ -146,7 +146,7 @@ function randChoice(arr) {
 
 /**
  * Function that will take an element's value and clamp it based on its min and max values
- * 
+ *
  * Parameters:
  *  elem: number input to clamp
  */
@@ -183,7 +183,7 @@ function addInput(container, opts) {
     input.id = opts.id;
     input.setAttribute('type', opts.type);
     input.setAttribute('min', opts.min);
-    input.setAttribute('max', opts.max);  
+    input.setAttribute('max', opts.max);
 
     if (opts.type == 'range') {
         input.setAttribute('step', opts.step);
@@ -270,7 +270,7 @@ class NNetwork {
      */
     static duplicate(net) {
         return new NNetwork(
-            net.inputLabels, 
+            net.inputLabels,
             net.outputLabels,
             net.lengths,
             JSON.parse(JSON.stringify(net.weights)),
@@ -456,9 +456,9 @@ class Bird {
      * Return: array of two child birds
      */
     static generateOffspring(parent1, parent2, maxMutateChange, mutateChance) {
-        let newNets = NNetwork.generateOffspring(parent1.controller, 
-            parent2.controller, 
-            maxMutateChange, 
+        let newNets = NNetwork.generateOffspring(parent1.controller,
+            parent2.controller,
+            maxMutateChange,
             mutateChance
         );
         let newBird1 = new Bird(newNets[0]);
@@ -500,7 +500,7 @@ class Bird {
                 newBirds = newBirds.concat(newBird);
             }
         }
-        
+
 
         return newBirds.slice(0, oldGen.length);
     }
@@ -509,7 +509,7 @@ class Bird {
      * !!private!! Creates a new bird with the given controller neural network
      *
      * Parameters:
-     *  contoller: neural network mapping any of the following to a jump output: x distance from the next hole, 
+     *  contoller: neural network mapping any of the following to a jump output: x distance from the next hole,
      *             y distance from the next hole, y distance from the next next hole, current velocity
      */
     constructor(controller) {
@@ -520,7 +520,7 @@ class Bird {
         this.dead = false;
         this.lastJump = -500;
         this.score = 0;
-        this.controller = controller;        
+        this.controller = controller;
     }
 
     _mutate(maxMutateChange, mutateChance) {
@@ -573,7 +573,7 @@ class Bird {
         } else {
             this.velocity = Math.min(this.velocity + GRAVITY * timeDelta, TERMINAL_VEL);
         }
-        
+
 
         // Game over if bird hit the top of the screen, bottom of the screen, or a column
         let bbox = {
@@ -615,7 +615,7 @@ class Column {
 
     /**
      * Creates a column with a hole for birds to go through
-     * 
+     *
      * Parameters:
      *  game:  flappy game this column is a part of
      *  holeY: y position of the center of the hole in this column
@@ -660,16 +660,16 @@ class Column {
 
         return rectIntersect({
             x1: this.topCol.x,
-            y1: this.topCol.y, 
-            x2: this.topCol.x + this.topCol.width, 
+            y1: this.topCol.y,
+            x2: this.topCol.x + this.topCol.width,
             y2: this.topCol.y + this.topCol.height
         }) || rectIntersect({
             x1: this.botCol.x,
-            y1: this.botCol.y, 
-            x2: this.botCol.x + this.botCol.width, 
+            y1: this.botCol.y,
+            x2: this.botCol.x + this.botCol.width,
             y2: this.botCol.y + this.botCol.height
         });
-        
+
     }
 
     /**
@@ -704,7 +704,7 @@ class Column {
     }
 }
 
-/** 
+/**
  * Representation of an entire flappy bird game, with a canvas to render the game onto
  */
 class FlappyGame {
@@ -720,8 +720,8 @@ class FlappyGame {
         infobar.append(this.scoreDisplay = document.createElement('div'));
         infobar.append(this.highScoreDisplay = document.createElement('div'));
         gameContainer.append(infobar);
-        this.scoreDisplay.innerHTML = 'Score:';
-        this.highScoreDisplay.innerHTML = 'High Score:';
+        this.scoreDisplay.innerHTML = 'Score: N/A';
+        this.highScoreDisplay.innerHTML = 'High Score: N/A';
 
         this.canvas = document.createElement('canvas');
         this.canvas.id = 'game';
@@ -737,7 +737,7 @@ class FlappyGame {
 
     /**
      * Setup a new round of the game with the given players
-     * 
+     *
      * Parameters:
      *  birds: birds to run the game with
      */
@@ -751,7 +751,7 @@ class FlappyGame {
             this.score = 0;
             this.done = false;
             this.won = false;
-        } 
+        }
     }
 
     stop() {
@@ -772,7 +772,7 @@ class FlappyGame {
             timeDelta -= GAME_STEP_S;
         }
         if (this.done) {
-            return   
+            return
         }
 
         // The bird moves at a constant rate, with columns at fixed distances
@@ -833,7 +833,7 @@ class FlappyGame {
      * Add a column to just to the right of the frame, with a randomly placed hole
      */
     _addColumn() {
-        this.cols.push(new Column(this, 
+        this.cols.push(new Column(this,
             Math.floor(Math.random() * (FRAME_HEIGHT * .75 - HOLE_HEIGHT)) + 0.125 * FRAME_HEIGHT + HOLE_HEIGHT / 2));
     }
 }
@@ -851,6 +851,7 @@ class FlappySim {
      * Creates the flappy bird simulator
      */
     constructor() {
+        // All of the default options for the simulation
         this.hiddenShape = [8];
         this.inputs = {
             xDist: true,
@@ -864,12 +865,13 @@ class FlappySim {
         this.numGens           = 10000;
         this.running           = false;
         this.paused            = false;
-        this.simRenderInterval = 25;
+        this.simRenderInterval = 10;
 
         let gameContainer = document.getElementById('game-container');
         this.game = new FlappyGame(gameContainer);
 
         this.genDisplay = document.getElementById('gen-display');
+        this.genDisplay.innerHTML = 'Generation: N/A';
 
         this._addNetControlEventListeners();
         this._addTrainingControlEventListeners();
@@ -908,7 +910,7 @@ class FlappySim {
                 input.id = `net-layer-${i}`;
                 input.setAttribute('type', 'number');
                 input.setAttribute('min', 1);
-                input.setAttribute('max', MAX_NEURONS_PER_LAYER);  
+                input.setAttribute('max', MAX_NEURONS_PER_LAYER);
                 input.addEventListener('change', function(e) {
                     clampNumberInput(e.target);
                     self.hiddenShape[i-1] = e.target.valueAsNumber;
@@ -942,7 +944,7 @@ class FlappySim {
      * Add the neural network training controls to the given container, those being how many models are trained
      * per generation, how likely a mutation will occur per weight/bias in the AI, the maximum change to any
      * weight or bias, and the number of generations to run
-     * 
+     *
      * Parameters:
      *  container: element to add the training controls to
      */
@@ -1004,7 +1006,7 @@ class FlappySim {
         resumeButton.style.display = 'none';
         let resetButton = document.getElementById('sim-reset');
         resetButton.style.display = 'none';
-        
+
         startButton.addEventListener('click', function(e) {
             if (!Object.values(self.inputs).some(v => v)) {
                 alert('There needs to be at least one input to the bird controller!');
@@ -1072,7 +1074,7 @@ class FlappySim {
         }
 
         let renderGame = this.currGen == 1 ||
-                         this.currGen == this.numGens || 
+                         this.currGen == this.numGens ||
                          this.currGen % this.simRenderInterval == 0;
         this._simulateGame(renderGame);
     }
@@ -1117,7 +1119,7 @@ class FlappySim {
                     }
                     prevScore = self.game.score;
                 }
-                
+
                 if (!self.game.done) {
                     setTimeout(() => runManyUpdates(100000), 1);
                 } else {

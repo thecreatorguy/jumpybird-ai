@@ -1,6 +1,6 @@
 # Jumpy Bird AI
 I wanted to experiment with my newfound knowledge in AI from various sources like [CodeBullet on YouTube](https://www.youtube.com/channel/UC0e3QhIYukixgh5VVpKHH9Q)
-and my Intro to Artificial Intelligence at RIT, and I asked myself, "what's the simplest, yet still interesting
+and my Intro to Artificial Intelligence class at RIT, and I asked myself, "what's the simplest, yet still interesting
 project I can reasonably complete?" The result was an artificial intelligence that plays Flappy Bird- a game
 with one output, whether or not to jump.
 
