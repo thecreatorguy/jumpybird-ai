@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Jumpy Bird AI</title>
+    <script src="jumpybird.js"></script>
+</head>
+<body>
+    <div id="game-container"></div>
+    <div id="gen-display"></div>
+    <div id="controls">
+        <fieldset class="js_disable-on-start">
+            <legend>Neural Network Controls</legend>
+            <label for="net-num-layers">Number of Hidden Layers:</label>
+            <input id="net-num-layers" type="number" min="1" max="10">
+
+            <fieldset>
+                <legend>Neurons Per Layer</legend>
+                <div id="neuron-layer-inputs"></div>
+            </fieldset>
+
+            <fieldset id="net-inputs">
+                <legend>Bird Controller Inputs</legend>
+                <label for="net-input-xDist">Horizontal Distance To Next Pipe:</label>
+                <input id="net-input-xDist" type="checkbox" value="xDist">
+
+                <label for="net-input-yDist">Vertical Distance To Next Pipe:</label>
+                <input id="net-input-yDist" type="checkbox" value="yDist">
+
+                <label for="net-input-yDist2">Vertical Distance To Following Pipe:</label>
+                <input id="net-input-yDist2" type="checkbox" value="yDist2">
+
+                <label for="net-input-velocity">Vertical Velocity:</label>
+                <input id="net-input-velocity" type="checkbox" value="velocity">
+            </fieldset>
+        </fieldset>
+
+        <fieldset class="js_disable-on-start">
+            <legend>Bird Training Controls</legend>
+            <label for="sim-pop-size">Population Size Per Generation:</label>
+            <input id="sim-pop-size" type="number" min="1" max="5000">
+
+            <label for="sim-num-gens">Number of Generations:</label>
+            <input id="sim-num-gens" type="number" min="1" max="1000000">
+
+            <label for="net-max-mutation">Maximum Mutation Change:</label>
+            <div>
+                <input id="net-max-mutation" type="range" min="0.01" max="0.5" step="0.01">
+                <div id="net-max-mutation-display">0.1</div>
+            </div>
+
+            <label for="net-mutation-chance">Mutation Chance:</label>
+            <div>
+                <input id="net-mutation-chance" type="range" min="0.01" max="1" step="0.01">
+                <div id="net-mutation-chance-display">0.2</div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Simulation Controls</legend>
+            <label for="sim-render-interval">Full Render Interval:</label>
+            <input id="sim-render-interval" type="number" min="1" max="1000000">
+            <button id="sim-start">Start</button>
+            <button id="sim-pause">Pause</button>
+            <button id="sim-resume">Resume</button>
+            <button id="sim-reset">Reset</button>
+        </fieldset>
+    </div>
+</body>
+</html>
